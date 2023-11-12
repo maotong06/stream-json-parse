@@ -2,8 +2,14 @@
   "name": "stream-json-parse",
   "version": "0.2.0",
   "type": "module",
-  "main": "./dist/stream-json-parse.cjs.js",
-  "module": "./dist/stream-json-parse.es.js",
+  "main": "./dist/stream-json-parse.cjs",
+  "module": "./dist/stream-json-parse.js",
+  "exports": {
+    ".": {
+      "import": "./dist/stream-json-parse.js",
+      "require": "./dist/stream-json-parse.cjs"
+    }
+  },
   "license": "MIT",
   "typings": "./lib-types/index.d.ts",
   "author": "limaotong",
