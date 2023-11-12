@@ -102,7 +102,7 @@ fetchStreamJson({
   - `constructorAction?: 'error' | 'ignore' | 'preserve';` // Object contains forbidden constructor property
   - `strict?: boolean;` // 是否针对对象使用严格模式，不允许重复的key
   - `completeItemPath?: (string|symbol)[]`, // 要求完整解析对应路径下的数据，才能上报。需要填的是路径 key 的一个数组，类似 `loadsh.get` 。如果需要匹配路径中是数组中的项，则 key 是 `arrayItemSymbol` 这个 Symbol，来泛指数组下的所有索引。
-  - `updatePeriod?: number;` //  每次解析完一定数据后，更新一次数据（执行`jsonCallback`回调）的间隔。默认300ms
+  - `updatePeriod?: number;` //  每次解析完一定数据后，更新一次数据（执行`jsonCallback`回调）的间隔。默认300ms,想要渲染更流畅可以缩短时间。
   - `jsonCallback: (error: null | Error, done?: boolean, value?: any) => void;` // json解析，每次解析完一定数据的回调
     - 回调参数：
       - error: 错误信息
