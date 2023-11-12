@@ -8,12 +8,17 @@
   "license": "MIT",
   "typings": "./lib-types/index.d.ts",
   "author": "limaotong",
+  "files": [
+    "dist",
+    "lib-types",
+    "src"
+  ],
   "scripts": {
     "dev": "vite serve dev/ -- --config vite.config.ts",
     "build": "tsc && vite build",
     "test": "jest",
     "build:watch": "tsc --watch >/dev/null & tsc && vite build --watch",
-    "prepublishOnly": "npm run test & npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "dependencies": {
     "lodash.isequal": "^4.5.0"
