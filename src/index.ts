@@ -1,4 +1,4 @@
-import { json_parse, IJSONParseConfig } from './lib/parse'
+import { jsonParse, IJSONParseConfig } from './lib/parse'
 
 export { arrayItemSymbol } from './lib/parse'
 
@@ -10,7 +10,7 @@ export async function fetchStreamJson({ url, fetchOptions, JSONParseOption }: {
   const {
     parseGenerate,
     updateText,
-  } = json_parse(JSONParseOption)
+  } = jsonParse(JSONParseOption)
   const parseCtrl = parseGenerate()
   parseCtrl.next()
 

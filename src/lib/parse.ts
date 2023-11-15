@@ -33,7 +33,7 @@ export interface IJSONParseConfig {
 
 export const arrayItemSymbol = Symbol('[]')
 
-export function json_parse(options?: IJSONParseConfig) {
+export function jsonParse(options?: IJSONParseConfig) {
   'use strict';
 
   var _options: IJSONParseConfig = {
@@ -532,7 +532,7 @@ export function json_parse(options?: IJSONParseConfig) {
     }
   }
 
-  // Return the json_parse function. It will have access to all of the above
+  // Return the jsonParse function. It will have access to all of the above
   // functions and variables.
 
   return {

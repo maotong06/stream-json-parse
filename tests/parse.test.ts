@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { json_parse, arrayItemSymbol } from '../src/lib/parse'
+import { jsonParse, arrayItemSymbol } from '../src/lib/parse'
 import * as fs from 'fs-extra'
 import _ from 'lodash'
 import { getIsSubset, getIsSubsetByPath } from './utils'
@@ -11,7 +11,7 @@ test('one time', done => {
   const {
     parseGenerate,
     updateText,
-  } = json_parse({
+  } = jsonParse({
     jsonCallback: (err, isDone, val) => {
       if (err) {
         done(err)
@@ -55,7 +55,7 @@ test('stream', done => {
   const {
     parseGenerate,
     updateText,
-  } = json_parse({
+  } = jsonParse({
     updatePeriod: 100,
     jsonCallback: (err, isDone, value) => {
       if (err) {
@@ -113,7 +113,7 @@ test('path test', done => {
   const {
     parseGenerate,
     updateText,
-  } = json_parse({
+  } = jsonParse({
     updatePeriod: 100,
     completeItemPath,
     jsonCallback: (err, isDone, value) => {
