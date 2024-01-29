@@ -56,7 +56,7 @@ export function createJsonParseWritableStream(JSONParseOption: IJSONParseConfig)
       }
     },
     close() {
-      updateText(' ', true);
+      updateText('', true);
       parseCtrl.next();
     },
     abort(reason) {
