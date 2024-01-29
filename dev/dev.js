@@ -1,4 +1,4 @@
-import { fetchStreamJson, arrayItemSymbol } from '../src'
+import { fetchStreamJson, arrayItemSymbol, createJsonParseWritableStream } from '../src'
 const { createApp, ref } = window.Vue
 
 createApp({
@@ -59,11 +59,39 @@ createApp({
         stopCount()
       })
     }
+
+    async function writeableStream() {
+      startCount()
+      arr.value = []
+      const response = await fetch(
+        './bigJson1.json',
+        {
+          cache: 'no-store'
+        }
+      )
+      const readableStream = response.body;
+      readableStream
+      .pipeThrough(new TextDecoderStream())
+      .pipeTo(createJsonParseWritableStream({
+        completeItemPath: ['data', arrayItemSymbol],
+        protoAction: 'ignore',
+        updatePeriod: 100,
+        constructorAction: 'ignore',
+        jsonCallback: (error, isDone, val) => {
+          console.error('jsonCallback', error, isDone, val)
+          arr.value = val.data
+          if (isDone) {
+            stopCount()
+          }
+        }
+      }));
+    }
     return {
       arr,
       times,
       fetchJson,
-      fetchNormal
+      fetchNormal,
+      writeableStream
     }
   }
 }).mount('#app')
