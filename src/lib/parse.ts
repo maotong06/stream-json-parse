@@ -150,10 +150,14 @@ export function jsonParse(options?: IJSONParseConfig) {
     res: any,
     // 结果发射回调
     seedResCb = async (data: any) => {
-      if (isDone || lastCount !== count) {
+      const _isDone = isDone
+      if (!isDoneSended && (_isDone || lastCount !== count)) {
         lastCount = count
+        if (_isDone) {
+          isDoneSended = true
+        }
         let sendRes = await structuralClone(data)
-        _options.jsonCallback(null, isDone, sendRes)
+        _options.jsonCallback(null, _isDone, sendRes)
       }
     },
     // 上次更新时间
@@ -164,6 +168,8 @@ export function jsonParse(options?: IJSONParseConfig) {
     lastCount = -1,
     // 是否完成
     isDone = false,
+    // 是否最后一次已经发送
+    isDoneSended = false,
     // key 栈
     keyStack: (string | Symbol)[] = [],
     // 是否完成单个节点
