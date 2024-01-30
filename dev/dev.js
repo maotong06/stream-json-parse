@@ -1,4 +1,4 @@
-import { fetchStreamJson, arrayItemSymbol, createJsonParseWritableStream } from '../src'
+import { arrayItemSymbol, createJsonParseWritableStream } from '../src'
 const { createApp, ref } = window.Vue
 
 createApp({
@@ -18,33 +18,6 @@ createApp({
     function stopCount() {
       console.log('intTime', intTime)
       clearInterval(intTime)
-    }
-
-    function fetchJson() {
-      startCount()
-      arr.value = []
-      fetchStreamJson({
-        url: './bigJson1.json',
-        JSONParseOption: {
-          completeItemPath: ['data', arrayItemSymbol],
-          protoAction: 'ignore',
-          updatePeriod: 100,
-          constructorAction: 'ignore',
-          jsonCallback: (error, isDone, val) => {
-            console.log('jsonCallback', error, isDone, val)
-            arr.value = val.data
-            if (isDone) {
-              stopCount()
-            }
-          },
-          diffCallBack: (text, isEq) => {
-            console.log('1')
-          }
-        },
-        fetchOptions: {
-          cache: 'no-store'
-        }
-      })
     }
 
     function fetchNormal() {
@@ -69,27 +42,25 @@ createApp({
           cache: 'no-store'
         }
       )
-      const readableStream = response.body;
-      readableStream
-      .pipeThrough(new TextDecoderStream())
-      .pipeTo(createJsonParseWritableStream({
-        completeItemPath: ['data', arrayItemSymbol],
-        protoAction: 'ignore',
-        updatePeriod: 100,
-        constructorAction: 'ignore',
-        jsonCallback: (error, isDone, val) => {
-          console.error('jsonCallback', error, isDone, val)
-          arr.value = val.data
-          if (isDone) {
-            stopCount()
+      response.body
+        .pipeThrough(new TextDecoderStream())
+        .pipeTo(createJsonParseWritableStream({
+          completeItemPath: ['data', arrayItemSymbol],
+          protoAction: 'ignore',
+          updatePeriod: 100,
+          constructorAction: 'ignore',
+          jsonCallback: (error, isDone, val) => {
+            console.error('jsonCallback', error, isDone, val)
+            arr.value = val.data
+            if (isDone) {
+              stopCount()
+            }
           }
-        }
-      }));
+        }));
     }
     return {
       arr,
       times,
-      fetchJson,
       fetchNormal,
       writeableStream
     }
