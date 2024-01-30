@@ -1,4 +1,5 @@
 # stream-json-parse
+<a href="readme.en.md">english</a>
 
 > 针对网络接口的大json的返回。或者慢网速下。使用流式解析json。能够边下载边解析。让前端提前渲染部分数据。优化用户体验。
 > 主要利用 fetch 流式传输，和 generate 的特性实现。

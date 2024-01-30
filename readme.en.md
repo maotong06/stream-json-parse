@@ -1,6 +1,5 @@
 # stream-json-parse
 
-<a href="readme.cn.md">中文</a>
 
 > Return of large json against a web interface. Or at slow network speeds. Use stream-json-parse to parse json as it is downloaded. Allow the front-end to render part of the data in advance. Optimize user experience.
 > Mainly use fetch streaming transfer, and generate features to achieve.
