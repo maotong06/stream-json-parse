@@ -1,10 +1,16 @@
 {
   "name": "stream-json-parse",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "homepage": "https://github.com/maotong06/stream-json-parse",
   "description": "A streaming JSON parser for Browser",
-  "tag": ["json", "stream", "parse", "fetch", "generator"],
+  "tag": [
+    "json",
+    "stream",
+    "parse",
+    "fetch",
+    "generator"
+  ],
   "main": "./dist/stream-json-parse.cjs",
   "module": "./dist/stream-json-parse.js",
   "exports": {
