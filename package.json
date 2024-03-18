@@ -1,6 +1,6 @@
 {
   "name": "stream-json-parse",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "homepage": "https://github.com/maotong06/stream-json-parse",
   "description": "A streaming JSON parser for Browser",
